@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std; 
+int main()
+{
+    long first=0;
+    long second=1;
+    long third=1;
+    long long sum=0;
+    while(third <=4000000)
+    {
+        third=first+second;
+        if(!(third&1))
+            sum+=third;
+        first=second;
+        second=third;
+    }
+    cout<<sum;
+    return 0;
+}

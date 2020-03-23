@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+void sieve(long int *A)
+{
+    for(int i=3;i<20;i++)
+    {
+        if(i&1)
+            A[i]=1;
+        else
+            A[i]=0;
+    }
+    A[0]=0;
+    A[1]=0;
+    A[2]=1;
+    for(int i=3;i<20;i++)
+    {
+        if(A[i]==1)
+        {
+            for(int j=i*i;j<=20;j+=(2*i))
+                A[j]=0;
+        }
+    }
+}
+long int hcf(long int a,long int b)
+{
+    
+    if(a==0)
+        return b;
+   return hcf(b%a,a);
+}
+int main()
+{
+    long int lcm=2520;
+    long int A[20];
+    sieve(A);
+    for(int i=11;i<=20;i++)
+    {
+        if(A[i]==1){
+            lcm*=i;
+            cout<<i<<". "<<lcm<<endl;
+        }
+        else
+        {
+           long int h=hcf(lcm,i);
+           //cout<<"hcf of "<<lcm<<" and "<<i<<" is "<<h<<endl;
+            lcm=(lcm*i)/h;
+            cout<<i<<". "<<lcm<<endl;
+        }
+    }
+    cout<<lcm;
+    return 0;
+}

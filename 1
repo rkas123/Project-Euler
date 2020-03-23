@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std; 
+int main()
+{
+    int n;
+    int upperlimit=999;
+    //3
+    int rem=(upperlimit)%3;
+    int max=upperlimit-rem;
+    n=max/3;
+    int sum=(n*(3+max))/2;
+    //5
+    rem=(upperlimit)%5;
+    max=upperlimit-rem;
+    n=max/5;
+    sum+=(n*(5+max))/2;
+    //15
+    rem=upperlimit%15;
+    max=upperlimit-rem;
+    n=max/15;
+    sum-=(n*(15+max))/2;
+    cout<<sum;
+    return 0;
+}

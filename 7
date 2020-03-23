@@ -1,0 +1,26 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+bool isprime(long long int i,vector<long long int> primes)
+{
+    for(vector<long long int>::iterator it=primes.begin();it!=primes.end();it++)
+    {
+        if(i%(*it)==0)
+            return false;
+    }
+    return true;
+}
+int main()
+{
+    vector<long long int> p;
+    p.push_back(2);
+    for(long long int i=3;p.size()<10001;i+=2)
+    {
+        if(isprime(i,p))
+            p.push_back(i);
+    }
+    vector<long long int>::iterator it=p.end();
+    it--;
+    cout<<*it;
+    return 0;
+}

@@ -1,0 +1,102 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+long int prod(int A[][20], int i, int j)
+{
+    long int m=-1;
+    long int temp=1;
+    if(j<17)
+    {
+        for(int a=j;a<j+4;a++)
+            temp*=A[i][a];
+        m=max(m,temp);
+       
+    }
+    temp=1;
+    if(i<17)
+    {
+        for(int a=i;a<i+4;a++)
+            temp*=A[a][j];
+        m=max(m,temp);
+         
+    }
+    temp=1;
+    if(j<17)
+    {
+        for(int a=j;a<j-4;a++)
+            temp*=A[i][a];
+        m=max(m,temp);
+         
+    }
+    temp=1;
+    if(i>=3)
+    {
+        for(int a=i;a>i-4;a--)
+            temp*=A[a][j];
+        m=max(m,temp);
+        
+    }
+    temp=1;
+    if(i>=3 && j>=3)
+    {
+        int a=i;
+        int b=j;
+        while(a>i-4)
+        {
+            temp*=A[a--][b--];
+        }
+        m=max(m,temp);
+        
+    }
+    temp=1;
+    if(i>=3 && j<17)
+    {
+        int a=i;
+        int b=j;
+        while(a>i-4)
+            temp*=A[a--][b++];
+        m=max(temp,m);
+        
+    }
+    temp=1;
+    if(i<17 && j<17)
+    {
+        int a=i;
+        int b=j;
+        while(a<i+4)
+            temp*=A[a++][b++];
+        m=max(m,temp);
+         
+    }
+    temp=1;
+    if(i<17 && j>=3)
+    {
+        int a=i;
+        int b=j;
+        while(a<i+4)
+            temp*=A[a++][b--];
+        m=max(temp,m);
+         
+    }
+    return m;
+}
+int main()
+{
+    int A[20][20];
+    for(int i=0;i<20;i++)
+    {
+        for(int j=0;j<20;j++)
+            cin>>A[i][j];
+    }
+    long int m=-1;
+    for(int i=0;i<20;i++)
+    {
+        for(int j=0;j<20;j++)
+        {
+            long int temp=prod(A,i,j);
+            m=max(m,temp);
+        }
+    }
+    cout<<m;
+    return 0;
+}

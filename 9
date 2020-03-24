@@ -1,0 +1,48 @@
+#include<iostream>
+#include<math.h>
+#include<cmath>
+using namespace std;
+int gcd(int a,int b)
+{
+    if(a==0)
+        return b;
+    return gcd(b%a,a);
+}
+int main()
+{
+    int m;
+    int k;
+    int s=1000;
+    bool flag=false;
+    int limit=sqrt(s/2);
+    for(m=1;m<=limit;m++)
+    {
+        if(((s/2)%m)==0)
+        {
+            if(m&1)
+                k=m+2;
+            else
+                k=m+1;
+            while(k<(2*m) && k<=(s/(2*m)))
+            {
+                if((s/(2*m))%k==0 && gcd(m,k)==1)
+                {
+                    int n=k-m;
+                    int d=(s/(2*m*k));
+                    int a=d*(m*m - n*n);
+                    int b=d*2*m*n;
+                    int c=d*(m*m + n*n);
+                    long long int answer=a*b*c;
+                    cout<<a<<" "<<b<<" "<<c<<" ";
+                    cout<<answer;
+                    flag=true;
+                    break;
+                }
+                k+=2;
+            }
+        }
+        if(flag)
+            break;
+    }
+    return 0;
+}

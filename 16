@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int A[350];
+    for(int i=0;i<350;i++)
+        A[i]=0;
+    A[0]=1;
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        for(int i=0;i<350;i++)
+            A[i]*=2;
+        for(int i=0;i<350;i++)
+        {
+            int temp=A[i];
+            A[i]=(temp%10);
+            A[i+1]+=(temp/10);
+        }
+    }
+    int index;
+    for(int i=349;i>=0;i--)
+    {
+        if(A[i]!=0)
+        {
+            index=i;
+            break;
+        }
+    }
+    int sum=0;
+    for(int i=index;i>=0;i--)
+        sum+=A[i];
+    cout<<sum;
+    return 0;
+}

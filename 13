@@ -1,0 +1,51 @@
+#include<iostream>
+using namespace std; 
+void add(int *sum,char *ch)
+{
+    for(int i=0;i<50;i++)
+    {
+        int temp=ch[i]-'0';
+        sum[i]+=temp;
+    }
+    for(int i=0;i<99;i++)
+    {
+        int temp=sum[i];
+        int rem=sum[i]%10;
+        sum[i]=rem;
+        sum[i+1]+=(temp/10);
+    }
+}
+int main()
+{
+    char ch[50];
+    char temp='\0';
+    int sum[100];
+    for(int i=0;i<100;i++)
+        sum[i]=0;
+    for(int i=0;i<100;i++)
+    {
+        int j=49;
+        temp=cin.get();
+        while(temp!='\n')
+        {
+            ch[j--]=temp;
+            temp=cin.get();
+        }
+        
+        //cout<<i<<endl;
+        add(sum,ch);
+    }
+    int index=-1;
+    for(int i=99;i>=0;i--)
+    {
+        if(sum[i]!=0)
+        {
+            index=i;
+            break;
+        }
+    }
+    cout<<"\nsum is"<<endl;
+    for(int i=index;i>=0;i--)
+        cout<<sum[i];
+    return 0;
+}

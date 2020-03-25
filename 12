@@ -1,0 +1,44 @@
+#include<iostream>
+#include<algorithm>
+#include<map>
+#include<vector>
+using namespace std;
+int count(long int sum)
+{
+    map<long int, int> m;
+    for(long int i=2;i<=sum,sum>1;i++)
+    {
+        while(sum%(i)==0)
+        {
+            if(m.count(i)==0)
+                m[i]=0;
+            m[i]+=1;
+            sum/=(i);
+        }
+    }
+    int div=1;
+    for(map<long int,int>::iterator it=m.begin();it!=m.end();it++)
+    {
+        div*=(it->second +1);
+    }
+    return div;
+}
+int main()
+{
+    long int sum=0;
+    long int i=1;
+    while(1)
+    {
+        sum+=i;
+        //cout<<sum<<" ";
+        int div=count(sum);
+        //cout<<div<<endl;
+        if(div>=500)
+        {
+            cout<<sum;
+            break;
+        }
+        i++;
+    }
+    return 0;
+}

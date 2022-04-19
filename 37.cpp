@@ -72,7 +72,6 @@ int32_t main()
 {
 	int sum = 0;
 	int cnt = 0;
-	queue<string> q;
 
 	buildSieve();
 	for (int i = 10; i < 1e6; i++)
